@@ -4,6 +4,7 @@ import com.example.PFA.models.Annonce;
 import com.example.PFA.services.AnnonceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +29,16 @@ public class AnnonceController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PostMapping
+    @PostMapping(value = "/", consumes = {"application/json"})
     public ResponseEntity addAnnonce(@RequestBody Annonce annonce) {
         return ResponseEntity.ok(this.annonceService.addAnnonce(annonce));
     }
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable("id") Long Id){this.annonceService.deleteAnnonceById(Id);}
+    public void deleteAnnonce(@PathVariable("id") Long Id){this.annonceService.deleteAnnonceById(Id);}
+    @PutMapping
+    private  Annonce udpdateAnnonce(@RequestBody Annonce annonce) {
+        annonceService.updateAnnonce(annonce);
+        return annonce;
+    }
+
 }

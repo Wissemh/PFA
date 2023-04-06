@@ -2,6 +2,7 @@ package com.example.PFA.services;
 
 import com.example.PFA.Repositories.AnnonceRepository;
 import com.example.PFA.models.Annonce;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class AnnonceService {
+    @Autowired
     private final AnnonceRepository annonceRepository;
 
     public AnnonceService(AnnonceRepository annonceRepository) {
@@ -20,4 +22,5 @@ public class AnnonceService {
     }
     public Annonce addAnnonce(Annonce  annonce) { return this.annonceRepository.save(annonce);}
     public void deleteAnnonceById(Long Id) { annonceRepository.deleteById(Id);}
+    public void updateAnnonce (Annonce annonce) { annonceRepository.save(annonce); }
 }

@@ -1,18 +1,17 @@
 package com.example.PFA.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 @Entity
 @Table(name="user")
 @Getter
@@ -20,7 +19,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,8 +37,15 @@ public class User {
 
     @Column(name = "is_admin")
     private boolean isAdmin;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_ecole")
     private Ecole ecole;
+    @JsonBackReference
+    @OneToMany(mappedBy = "user")
+    private List<Annonce> annonces;
+    @JsonBackReference
+    @OneToMany(mappedBy = "user")
+    private List<Signalement> signalements;
 }
 

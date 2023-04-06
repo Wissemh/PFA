@@ -1,0 +1,39 @@
+package com.example.PFA.controllers;
+
+
+import com.example.PFA.models.Photo;
+import com.example.PFA.services.PhotoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/photo")
+public class PhotoController {
+    @Autowired
+    private PhotoService photoService;
+
+    @GetMapping
+    public List<Photo> getAllAnnonces(){return this.photoService.getAll();}
+    @GetMapping("/{id}")
+    public ResponseEntity<Photo> findById(@PathVariable Long id) {
+        Optional<Photo> optionalPhoto = photoService.findById(id);
+        if (optionalPhoto.isPresent()) {
+            Photo photo = optionalPhoto.get();
+            return new ResponseEntity<>(photo, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @PostMapping
+    public ResponseEntity addPhoto(@RequestBody Photo photo) {
+        return ResponseEntity.ok(this.photoService.addPhoto(photo));
+    }
+    @DeleteMapping("/{id}")
+    public void deletePhoto(@PathVariable("id") Long Id){this.photoService.deletePhotoById(Id);}
+}
+

@@ -1,4 +1,6 @@
 package com.example.PFA.models;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,6 +36,7 @@ public class Ecole {
     private long codePostal;
     @Column(name="Ville")
     private String ville;
-   /* @OneToMany(mappedBy = "ecole")
-    private List<User> user;*/
+    @JsonManagedReference
+    @OneToMany(mappedBy = "ecole")
+    private List<User> user;
 }
