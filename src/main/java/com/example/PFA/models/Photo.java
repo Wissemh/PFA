@@ -1,6 +1,7 @@
 package com.example.PFA.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Photo {
     private Long idPhoto;
     @Column(name="path_photo")
     private String pathPhoto;
-    @JsonBackReference
+   // @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "id_annonce")
     private Annonce annonce;

@@ -29,7 +29,7 @@ public class AnnonceController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PostMapping(value = "/", consumes = {"application/json"})
+    @PostMapping
     public ResponseEntity addAnnonce(@RequestBody Annonce annonce) {
         return ResponseEntity.ok(this.annonceService.addAnnonce(annonce));
     }

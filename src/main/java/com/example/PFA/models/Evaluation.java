@@ -1,5 +1,6 @@
 package com.example.PFA.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,13 +19,13 @@ public class Evaluation {
     @Column(name="eval_id")
     private EvaluationId id=new EvaluationId();
 
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToOne
     @MapsId("annonceId") // maps table1PK attribute of embedded id
     @JoinColumn(name = "annonce_id")
     private Annonce annonce;
 
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToOne
     @MapsId("userId") // maps table1PK attribute of embedded id
     @JoinColumn(name = "user_id")

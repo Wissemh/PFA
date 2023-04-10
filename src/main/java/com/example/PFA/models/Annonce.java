@@ -1,6 +1,7 @@
 package com.example.PFA.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -15,7 +16,6 @@ import java.util.List;
 @Setter
 @Data
 @Table(name = "annonce")
-@JsonIgnoreProperties({"hibernateLazyInitializer","referenceList"})
 public class Annonce {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,14 +50,17 @@ public class Annonce {
     @JoinColumn(name = "id_user")
     private User user;
 
-    @JsonManagedReference
+    //@JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "annonce")
     private List<Photo> photos;
 
-    @JsonManagedReference
+    //@JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "annonce")
     private List<Evaluation> evaluations;
-    @JsonManagedReference
+    //@JsonManagedReference
+    //@JsonIgnore
     @OneToMany(mappedBy = "annonce")
     private List<Signalement> signalements;
 

@@ -1,6 +1,7 @@
 package com.example.PFA.controllers;
 
 
+import com.example.PFA.models.Annonce;
 import com.example.PFA.models.Photo;
 import com.example.PFA.services.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,10 @@ public class PhotoController {
     }
     @DeleteMapping("/{id}")
     public void deletePhoto(@PathVariable("id") Long Id){this.photoService.deletePhotoById(Id);}
+    @PutMapping
+    private Photo udpdatePhoto(@RequestBody Photo photo) {
+        photoService.updatePhoto(photo);
+        return photo;
+    }
 }
 

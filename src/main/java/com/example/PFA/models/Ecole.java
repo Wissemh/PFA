@@ -1,4 +1,5 @@
 package com.example.PFA.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
@@ -36,7 +37,8 @@ public class Ecole {
     private long codePostal;
     @Column(name="Ville")
     private String ville;
-    @JsonManagedReference
+    //@JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "ecole")
     private List<User> user;
 }

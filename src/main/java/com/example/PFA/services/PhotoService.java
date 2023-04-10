@@ -24,5 +24,7 @@ public class PhotoService {
     }
     public Photo addPhoto(Photo  photo) { return this.photoRepository.save(photo);}
     public void deletePhotoById(Long Id) { photoRepository.deleteById(Id);}
+    public void updatePhoto (Photo photo) { photoRepository.save(photo); }
+
 }
 
